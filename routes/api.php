@@ -61,12 +61,14 @@ Route::group(['middleware' => 'rayvarz'], function ($router) {
 });
 
 Route::post('/login', [JWTAuthController::class, 'login']);
+Route::post('/register', [JWTAuthController::class, 'register']);
+
 Route::group(['middleware' => 'jwt.verify'], function ($router) {
 
-    Route::post('/register', [JWTAuthController::class, 'register']);
     Route::post('/logout', [JWTAuthController::class, 'logout']);
     Route::post('/refresh', [JWTAuthController::class, 'refresh']);
     Route::post('/profile', [JWTAuthController::class, 'profile']);
+    Route::get('/getUser', [JWTAuthController::class, 'getUser']);
 
     Route::controller(ProductController::class)->group(function () {
         Route::get('products/all', 'getAll')->middleware(['permission:product-list']);

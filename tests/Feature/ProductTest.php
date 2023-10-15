@@ -30,7 +30,7 @@ class ProductTest extends TestCase
      */
     public function testRequestsShow()
     {
-        $response = $this->get('api/requests/all');
+        $response = $this->withHeaders(['Authorization' => "Bearer $this->token"])->get('api/requests/all');
         $response->assertSuccessful();
     }
 
@@ -41,7 +41,7 @@ class ProductTest extends TestCase
      */
     public function testRequestsDetailsShow()
     {
-        $response = $this->get('api/requestdetails/all');
+        $response = $this->withHeaders(['Authorization' => "Bearer $this->token"])->get('api/requestdetails/all');
         $response->assertSuccessful();
     }
 
@@ -107,10 +107,10 @@ class ProductTest extends TestCase
         $data['rayvarz_id'] = 1100;
         $data['technical_index_id'] = 134;
 
-        $response = $this->post('api/products/store', $data);
+        $response = $this->withHeaders(['Authorization' => "Bearer $this->token"])->post('api/products/store', $data);
         $response->assertSuccessful();
         
-        $response = $this->get('api/products/all', $data);
+        $response = $this->withHeaders(['Authorization' => "Bearer $this->token"])->get('api/products/all', $data);
         $response->assertSuccessful();
         // var_dump($response['data']);die;
         // $data['id'] = $response['data'][0]['id'];

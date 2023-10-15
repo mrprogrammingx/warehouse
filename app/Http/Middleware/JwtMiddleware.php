@@ -28,7 +28,7 @@ class JwtMiddleware extends BaseMiddleware
                 return response()->json(['message' => 'Token is Expired','status' => '401'],401);
 
             }else{
-                return response()->json(['message' => 'Authorization Token not found','status' => '401'],401);
+                return response()->json(['message' => 'Authorization Token not found','status' => '401','error'=>$e->getMessage()],401);
             }
         }
 

@@ -52,11 +52,6 @@ class JwtAuthService
         return ResponsesService::success(['user' => JWTAuth::authenticate($data['token'])]);
     }
 
-    public function getUserByToken($token)
-    {
-        return ResponsesService::success(['user' => JWTAuth::authenticate($token)]);
-    }
-
     public function respondWithToken($token)
     {
         return [
