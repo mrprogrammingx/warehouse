@@ -50,7 +50,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('user/updateOrStoreByPersonnelCode', [UserController::class,'updateOrStoreByPersonnelCode']);
 
-//Route::get('/authenticate', [JWTAuthController::class, 'loginByToken']);
+Route::get('/loginByToken', [JWTAuthController::class, 'loginByToken']);
 
 
 Route::group(['middleware' => 'rayvarz'], function ($router) {
@@ -300,6 +300,6 @@ Route::group(['middleware' => 'jwt.verify'], function ($router) {
     });
 
 
-    Route::post('authenticate',[JWTAuthController::class,'redirectAndAuth']); // use in manager component
+    // Route::post('authenticate',[JWTAuthController::class,'redirectAndAuth']); // use in manager component
 
 });

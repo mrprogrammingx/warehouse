@@ -66,12 +66,6 @@ class JwtAuthController extends Controller
         return response()->json($result, $result['status']);
     }
 
-    public function getUserByToken($token)
-    {
-        $result = $this->jwtAuthService->getUserByToken($token);
-        return response()->json($result, $result['status']);
-    }
-
     /**
      * Get the token array structure.
      *

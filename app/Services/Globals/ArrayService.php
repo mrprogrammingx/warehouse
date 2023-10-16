@@ -8,7 +8,7 @@ namespace App\Services\Globals;
  */
 class ArrayService
 {
-    public function removeNullFromArray($fields)
+    public function removeNullFromArray(array $fields) :array
     {
         return array_diff($fields,array(null));
     }

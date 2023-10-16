@@ -91,37 +91,4 @@ class JwtAuthService
                     window.location.href = '/#{$data['path']}';
                 </script>";
     }
-
-    public function redirectAndAuth($request)
-    {
-        $user = auth()->user();
-        $token = $this->getLoginUserToken($user);
-        $url = $this->generateAuthUrl($request, $token);
-        return Response()->json(['url' => $url, 'status' => '200'], 200);
-    }
-
-
-    public function getLoginUserToken($user)
-    {
-        $token = auth()->login($user);
-        return $token;
-    }
-
-
-    /**
-     * @param $request
-     * @param $token
-     * @return string
-     */
-    public function generateAuthUrl($request, $token): string
-    {
-        $url = parse_url($request->address);
-        $pathComponent = isset($url['fragment']) ? $url['fragment'] : null;
-        if (isset($url['port'])) {
-            $url = $url['scheme'] . '://' . $url['host'] . ":{$url['port']}/api/authenticate?token={$token}&path={$pathComponent}";
-        } else {
-            $url = $url['scheme'] . '://' . $url['host'] . "/api/authenticate?token={$token}&path={$pathComponent}";
-        }
-        return $url;
-    }
 }
