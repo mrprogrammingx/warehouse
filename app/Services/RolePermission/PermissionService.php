@@ -20,12 +20,12 @@ class PermissionService
         $this->permissionRepository = new PermissionRepository();
     }
 
-    public function getAllPermissions()
+    public function getAllPermissions():array
     {
         return ResponsesService::success($this->permissionRepository->getAllPermissions());
     }
 
-    public function getLoginUserPermissions()
+    public function getLoginUserPermissions():array
     {
         $permissions = [];
         foreach ($this->permissionRepository->getAllPermissions() as $permission) {

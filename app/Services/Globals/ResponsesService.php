@@ -11,7 +11,8 @@ use Hekmatinasser\Verta\Verta;
 class ResponsesService
 {
     
-    public static function success($data='',$message = 'Done successfully',$status=200,$error=''){
+    public static function success($data='',string $message = 'Done successfully',int $status=200,$error=''):array
+    {
         return [
                 'success' => true,
                 'status' => $status,
@@ -21,7 +22,8 @@ class ResponsesService
         ];
     }
 
-    public static function error($data='',$message = 'Failed to complete successfully',$status=400,$error=''){
+    public static function error($data='',string $message = 'Failed to complete successfully',int $status=400,$error=''):array
+    {
         return [
             'success' => false,
             'status' => $status,
@@ -31,7 +33,8 @@ class ResponsesService
         ];
     }
 
-    public static function exception($e,$status=500){
+    public static function exception($e,int $status=500):array
+    {
         return [
             'success' => false,
             'status' => $status,

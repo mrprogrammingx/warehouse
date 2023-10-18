@@ -528,27 +528,27 @@ export default {
             this.item_array=[]
         },
         havale(request){
-            axios.post('api/rayvarz/remittance/create',{
-                "fiscalYear": moment(new Date()).format("jYYYY"),
-                "warehouseId": request.request_detail[0].warehouse.rayvarz_id,
-                "createDate":moment(request.created_at).format("jYYYYjMMjDD"),
-                "inventoryJournalItems": this.item_array,
-                "requestId":request.id,
-                "hasRemittance":1,
-            })
-                .then((response) => {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: response.data.message,
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                })
-                .catch((response) => {
-                    alert("An error occurred while issuing the remittance");
-                    console.log(response)
-                });
+            // axios.post('api/rayvarz/remittance/create',{
+            //     "fiscalYear": moment(new Date()).format("jYYYY"),
+            //     "warehouseId": request.request_detail[0].warehouse.rayvarz_id,
+            //     "createDate":moment(request.created_at).format("jYYYYjMMjDD"),
+            //     "inventoryJournalItems": this.item_array,
+            //     "requestId":request.id,
+            //     "hasRemittance":1,
+            // })
+            //     .then((response) => {
+            //         Swal.fire({
+            //             position: 'center',
+            //             icon: 'success',
+            //             title: response.data.message,
+            //             showConfirmButton: false,
+            //             timer: 2000
+            //         })
+            //     })
+            //     .catch((response) => {
+            //         alert("An error occurred while issuing the remittance");
+            //         console.log(response)
+            //     });
         }
     }, components: {
         Multiselect

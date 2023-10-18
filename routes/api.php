@@ -28,7 +28,7 @@ use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\UsersConfirmController;
 use App\Http\Controllers\Api\VehicleController;
 use App\Http\Controllers\Api\WarehouseController;
-use App\Http\Controllers\Rayvarz\ProductController as RayvarzProductController;
+// use App\Http\Controllers\Rayvarz\ProductController as RayvarzProductController;
 use App\Http\Controllers\Rayvarz\RemittanceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\MainDashboard\FoodController;
@@ -53,12 +53,12 @@ Route::post('user/updateOrStoreByPersonnelCode', [UserController::class,'updateO
 Route::get('/loginByToken', [JWTAuthController::class, 'loginByToken']);
 
 
-Route::group(['middleware' => 'rayvarz'], function ($router) {
-    Route::get('/rayvarz/products/last', [RayvarzProductController::class, 'getLastProducts']);
-    Route::put('/rayvarz/product/sync', [RayvarzProductController::class, 'syncWarehouseProductTableWithRayvarz']);
-    Route::get('/rayvarz/product/amount', [RayvarzProductController::class, 'checkAmountOfEachProduct']);
-    Route::post('/rayvarz/remittance/create', [RemittanceController::class, 'createRemittance']);
-});
+// Route::group(['middleware' => 'rayvarz'], function ($router) {
+//     Route::get('/rayvarz/products/last', [RayvarzProductController::class, 'getLastProducts']);
+//     Route::put('/rayvarz/product/sync', [RayvarzProductController::class, 'syncWarehouseProductTableWithRayvarz']);
+//     Route::get('/rayvarz/product/amount', [RayvarzProductController::class, 'checkAmountOfEachProduct']);
+//     Route::post('/rayvarz/remittance/create', [RemittanceController::class, 'createRemittance']);
+// });
 
 Route::post('/login', [JWTAuthController::class, 'login']);
 Route::post('/register', [JWTAuthController::class, 'register']);

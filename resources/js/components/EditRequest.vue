@@ -962,90 +962,90 @@ export default {
                 $('.check' + index).addClass('checkmark');
                 $('.check' + index).hide();
 
-                axios.put('api/rayvarz/product/sync', {
-                        itemDataId: product_obj.itemDataId
-                    }
-                ).then((response) => {
-                    if (response.data.success) {
-                    }
-                }).catch(error => {
-                    if (!error.response.data.success) {
-                        this.loading = false;
-                        $('.circle' + index).hide();
-                        Swal.fire({
-                            heightAuto: false,
-                            icon: 'error',
-                            title: 'Error . . .',
-                            text: error.response.data.message
-                        })
-                    }
+                // axios.put('api/rayvarz/product/sync', {
+                //         itemDataId: product_obj.itemDataId
+                //     }
+                // ).then((response) => {
+                //     if (response.data.success) {
+                //     }
+                // }).catch(error => {
+                //     if (!error.response.data.success) {
+                //         this.loading = false;
+                //         $('.circle' + index).hide();
+                //         Swal.fire({
+                //             heightAuto: false,
+                //             icon: 'error',
+                //             title: 'Error . . .',
+                //             text: error.response.data.message
+                //         })
+                //     }
 
-                })
+                // })
 
-                axios.get('api/rayvarz/product/amount', {
-                        params: {
-                            itemDataId: product_obj.itemDataId,
-                            warehouseId: this.warehouses.rayvarz_id
-                        }
+                // axios.get('api/rayvarz/product/amount', {
+                //         params: {
+                //             itemDataId: product_obj.itemDataId,
+                //             warehouseId: this.warehouses.rayvarz_id
+                //         }
 
-                    }
-                ).then((response) => {
-                    if (response.data.success) {
-                        this.requestDetails[index].amount_rayvarz = response.data.data
-                        this.loading = false;
-                        $('.circle' + index).addClass('load-complete');
-                        $('.check' + index).show();
-                        $('.check' + index).addClass('draw');
-                    } else {
-                        this.loading = false;
-                        // $('.circle' + index).hide();
-                        $('.circle' + index).removeClass('load-complete');
-                        $('.check' + index).removeClass('checkmark');
-                        $('.circle' + index).addClass('load-error');
-                        $('.check' + index).show();
-                        $('.check' + index).removeClass('draw');
-                        $('.check' + index).addClass('error');
-                        // this.requestDetails[index].product_id = null
-                        Swal.fire({
-                            heightAuto: false,
-                            position: 'center',
-                            icon: 'error',
-                            title: response.data.message,
-                            text: "Do you continue?",
-                            showConfirmButton: true,
-                            showCancelButton: true,
-                            confirmButtonText: "Yes",
-                            cancelButtonText: "Opt out",
-                            confirmButtonColor: "#51a139"
-                        }).then((response) => {
-                            if (response.isConfirmed) {
-                                this.requestDetails[index].amount_rayvarz = null
-                            } else {
-                                this.requestDetails[index].product_id = null
-                                $('.circle' + index).hide();
-                            }
+                //     }
+                // ).then((response) => {
+                //     if (response.data.success) {
+                //         this.requestDetails[index].amount_rayvarz = response.data.data
+                //         this.loading = false;
+                //         $('.circle' + index).addClass('load-complete');
+                //         $('.check' + index).show();
+                //         $('.check' + index).addClass('draw');
+                //     } else {
+                //         this.loading = false;
+                //         // $('.circle' + index).hide();
+                //         $('.circle' + index).removeClass('load-complete');
+                //         $('.check' + index).removeClass('checkmark');
+                //         $('.circle' + index).addClass('load-error');
+                //         $('.check' + index).show();
+                //         $('.check' + index).removeClass('draw');
+                //         $('.check' + index).addClass('error');
+                //         // this.requestDetails[index].product_id = null
+                //         Swal.fire({
+                //             heightAuto: false,
+                //             position: 'center',
+                //             icon: 'error',
+                //             title: response.data.message,
+                //             text: "Do you continue?",
+                //             showConfirmButton: true,
+                //             showCancelButton: true,
+                //             confirmButtonText: "Yes",
+                //             cancelButtonText: "Opt out",
+                //             confirmButtonColor: "#51a139"
+                //         }).then((response) => {
+                //             if (response.isConfirmed) {
+                //                 this.requestDetails[index].amount_rayvarz = null
+                //             } else {
+                //                 this.requestDetails[index].product_id = null
+                //                 $('.circle' + index).hide();
+                //             }
 
-                        })
-                    }
-                }).catch(error => {
+                //         })
+                //     }
+                // }).catch(error => {
 
-                    if (!error.response.data.success) {
-                        this.loading = false;
-                        $('.circle' + index).removeClass('load-complete');
-                        $('.check' + index).removeClass('checkmark');
-                        $('.circle' + index).addClass('load-error');
-                        $('.check' + index).show();
-                        $('.check' + index).removeClass('draw');
-                        $('.check' + index).addClass('error');
-                        Swal.fire({
-                            heightAuto: false,
-                            icon: 'error',
-                            title: 'Error . . .',
-                            text: error.response.message
-                        })
-                    }
+                //     if (!error.response.data.success) {
+                //         this.loading = false;
+                //         $('.circle' + index).removeClass('load-complete');
+                //         $('.check' + index).removeClass('checkmark');
+                //         $('.circle' + index).addClass('load-error');
+                //         $('.check' + index).show();
+                //         $('.check' + index).removeClass('draw');
+                //         $('.check' + index).addClass('error');
+                //         Swal.fire({
+                //             heightAuto: false,
+                //             icon: 'error',
+                //             title: 'Error . . .',
+                //             text: error.response.message
+                //         })
+                //     }
 
-                })
+                // })
             } else {
                 $('.circle' + index).hide();
             }
