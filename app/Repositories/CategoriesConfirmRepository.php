@@ -25,7 +25,7 @@ class CategoriesConfirmRepository
         return CategoriesConfirm::destroy($id);
     }
 
-    public function update(array $data): ?object
+    public function update(array $data):?int
     {
         return CategoriesConfirm::where([
             'id' => $data['id']

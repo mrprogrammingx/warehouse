@@ -16,7 +16,10 @@ class StatusRepository
 
     public function store($data){
         return Status::create([
-            'name' => $data['name']
+            'name' => $data['name'],
+            'title' => $data['title'],
+            'priority' => $data['priority'] ?? '',
+            'description' => $data['description'] ?? '',
         ]);
     }
 

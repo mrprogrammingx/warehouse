@@ -24,7 +24,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->firstName(),
-            'Attributes' => 1,
+            'attributes' => 1,
             'worn' => 1,
             'descriptions' => $this->faker->text(),
             'file_id' => 1,

@@ -27,7 +27,7 @@ class ConfirmService
         return ($this->confirmRepository->checkIsNotRepetitious($data)) ? ResponsesService::error(null, 'Confirmation has already been registered!') : ResponsesService::success($this->confirmRepository->store($data));
     }
 
-    public function dalate(int $id)
+    public function delete(int $id)
     {
         return ResponsesService::success($this->confirmRepository->delete($id));
     }

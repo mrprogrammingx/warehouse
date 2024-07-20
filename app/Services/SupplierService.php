@@ -5,10 +5,10 @@ namespace App\Services;
 use App\Repositories\SupplierRepository;
 
 /**
- * Class SupplireService
+ * Class SupplierService
  * @package App\Services
  */
-class SupplireService
+class SupplierService
 {
     protected $supplierRepository;
     public function __construct(SupplierRepository $supplierRepository) {

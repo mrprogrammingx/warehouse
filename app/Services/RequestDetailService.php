@@ -45,7 +45,7 @@ class RequestDetailService
                 $oldRequestDetail
             );
         }
-        return (array_search(true, $result) != false) ? ResponsesService::success($result) : ResponsesService::error($result);
+        return (array_search(true, $result) !== false) ? ResponsesService::success($result) : ResponsesService::error($result);
     }
 
     public function storeAndUpdateRequestDetailsEditLogAndRequestDetail(bool $tableDataWithInputDataIsEqual, array $requestDetail, array $oldRequestDetail)
@@ -145,4 +145,5 @@ class RequestDetailService
         }
         return $result;
     }
+
 }

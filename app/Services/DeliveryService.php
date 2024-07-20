@@ -44,7 +44,7 @@ class DeliveryService
         return  ResponsesService::success($this->deliveryRepository->updateOnlineStatus($data));
     }
 
-    public function checkVehicleExist(int $vehicleId)
+    public function checkVehicleExist(int $vehicleId):bool
     {
         return $this->deliveryRepository->checkVehicleExist($vehicleId);
     }

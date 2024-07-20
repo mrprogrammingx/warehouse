@@ -3,10 +3,10 @@
 namespace App\Services\ProductIdentifier;
 
 /**
- * Class SupplireService
+ * Class SupplierService
  * @package App\Services
  */
-class SupplireService
+class SupplierService
 {
 
 }

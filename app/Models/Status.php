@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
-    protected $table = 'status';
+
+    protected $fillable = [
+        'name',
+        'title',
+        'priority',
+        'description',
+    ];
+
+    protected $table = 'statuses';
 
     public function request_detail(){
         return $this->belongsTo(RequestDetail::class,'status_id','id');

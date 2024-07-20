@@ -6,9 +6,9 @@ use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 //use Your Model
 
 /**
- * Class SupplireRepository.
+ * Class SupplierRepository.
  */
-class SupplireRepository extends BaseRepository
+class SupplierRepository extends BaseRepository
 {
     /**
      * @return string

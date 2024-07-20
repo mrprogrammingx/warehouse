@@ -63,7 +63,7 @@ class DeliveryRepository
         ])->get();
     }
 
-    public function checkVehicleExist(int $id)
+    public function checkVehicleExist(int $id):bool
     {
         return Delivery::where([
             'id' => $id

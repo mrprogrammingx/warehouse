@@ -29,7 +29,7 @@ class UsersConfirmRepository
         return UsersConfirm::destroy($id);
     }
 
-    public function update(array $data): ?object
+    public function update(array $data): ?int
     {
         return UsersConfirm::where([
             'id' => $data['id']

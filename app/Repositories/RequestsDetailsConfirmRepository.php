@@ -24,7 +24,7 @@ class RequestsDetailsConfirmRepository
         return RequestsDetailsConfirm::firstOrCreate($fields,$data);
     }
 
-    public function dalete($id)
+    public function delete($id)
     {
         return RequestsDetailsConfirm::destroy($id);
     }

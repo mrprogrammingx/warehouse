@@ -12,7 +12,8 @@ class Delivery extends Model
     protected $fillable = [
         'user_id',
         'vehicle_id',
-        'active'
+        'active',
+        'online',
     ];
     public function request_detail(){
         return $this->belongsTo(RequestDetail::class,'delivery_id','id');

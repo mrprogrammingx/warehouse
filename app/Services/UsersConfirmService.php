@@ -18,32 +18,32 @@ class UsersConfirmService
         $this->usersConfirmRepository = $usersConfirmRepository;
     }
 
-    public function getAll()
+    public function getAll():array
     {
         return ResponsesService::success($this->usersConfirmRepository->getAll());
     }
 
-    public function store(array $data)
+    public function store(array $data):array
     {
         return ($this->usersConfirmRepository->checkIsNotRepetitious($data)) ? ResponsesService::error(null, 'The confirmation has already been registered for the user!') : ResponsesService::success($this->usersConfirmRepository->store($data));
     }
 
-    public function delete(int $id)
+    public function delete(int $id):array
     {
         return ResponsesService::success($this->usersConfirmRepository->delete($id));
     }
 
-    public function update(array $data)
+    public function update(array $data):array
     {
         return ResponsesService::success($this->usersConfirmRepository->update($data));
     }
 
-    public function getByUserId(array $data)
+    public function getByUserId(array $data):array
     {
         return ResponsesService::success($this->usersConfirmRepository->getByUserId($data['userId'] ?? UserService::getUserId()));
     }
 
-    public function setInactiveStatusByUserConfirmId(array $data)
+    public function setInactiveStatusByUserConfirmId(array $data):array
     {
         return ResponsesService::success($this->usersConfirmRepository->setInactiveStatusByUserConfirmId($data['userConfirmId']));
     }

@@ -40,7 +40,7 @@ class RequestsDetailsConfirmService
         return ResponsesService::success($this->requestsDetailsConfirmRepository->getAll());
     }
 
-    public function store(array $data)
+    public function store(array $data):array
     {
         if ($this->checkConfirmsIsUnique($data) == false)
             return ResponsesService::error($data, 'This confirmation has already been given to this request or one of the sub-requests! ');
@@ -72,9 +72,9 @@ class RequestsDetailsConfirmService
         return ResponsesService::success($this->requestsDetailsConfirmRepository->update($data));
     }
 
-    public function getRequestsDetailsByConfirmUserId($request)
+    public function getRequestsDetailsByConfirmUserId(array $data)
     {
-        return $this->requestsDetailsConfirmRepository->getRequestsDetailsByConfirmUserId($request->validated()['user_id']);
+        return $this->requestsDetailsConfirmRepository->getRequestsDetailsByConfirmUserId($data['user_id']);
     }
 
     public function confirmsOfRequestDetail(array $data)
@@ -127,7 +127,6 @@ class RequestsDetailsConfirmService
     public function storeDefinesConfirmsForRequestDetail($productId, $requestDetailsId)
     {
         return [
-
             'productConfirms' => $this->storeConfirmsForProductId($productId, $requestDetailsId),
             'categoryConfirms' => $this->storeConfirmsForCategoryId($this->productRepository->getById($productId)['category_id'], $requestDetailsId)
         ];

@@ -14,7 +14,7 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('status')->insert(array(
+        DB::table('statuses')->insert(array(
             array(
                 'id' => 1,
                 'name' => 'Initial request',

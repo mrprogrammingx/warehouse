@@ -30,7 +30,7 @@ class RequestDetailRepository
         return RequestDetail::create($fields);
     }
 
-    public function dalete($id)
+    public function delete($id)
     {
         return RequestDetail::destroy($id);
     }

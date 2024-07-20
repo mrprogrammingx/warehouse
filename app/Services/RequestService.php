@@ -200,7 +200,7 @@ class RequestService
             return ResponsesService::error(null, 'The delivery code is not valid!');
     }
 
-    public function setStatusForRequestAndItsRequestDetails(array $data, int $statusId)
+    public function setStatusForRequestAndItsRequestDetails(array $data, int $statusId): ?array
     {
         $currentStatusId = $this->requestRepository->getById($data['requestId'])->status_id;
         $changeStatusConditions = $this->changeStatusConditions($data['requestId'], $statusId, $currentStatusId);
@@ -335,7 +335,7 @@ class RequestService
         return ($this->checkValidatedCode($data)) ? ResponsesService::success($data) : ResponsesService::error($data, 'The confirmation code is incorrect');
     }
 
-    public function ProcessOfValidCodeForReturnToWarehouse(array $data)
+    public function processOfValidCodeForReturnToWarehouse(array $data)
     {
         return ($this->checkValidatedCode($data)) ? ResponsesService::success($this->requestDetailService->updateForDeliveredToWarehouse($data['requestDetail'])) : ResponsesService::error($data, 'The confirmation code is incorrect');
     }

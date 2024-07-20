@@ -88,7 +88,7 @@ class FileService
         $storagePath = storage_path($path);
 
         if (File::exists($storagePath) && !is_dir($storagePath)) {
-            return ResponsesService::success($this->fileDownloadLivewire->show($path, $this->createNameForDownload($path)));
+            return ResponsesService::success($this->fileDownloadLivewire->show($path));
         } else {
             var_dump('NO Such File Exists In:' . $path);
         }

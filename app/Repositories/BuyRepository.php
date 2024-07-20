@@ -31,7 +31,7 @@ class BuyRepository
 
     public function update($data){
         return Buy::where([
-            'id' => $data->id,
+            'id' => $data['id'],
         ])->update([
             'user_id' => $data['user_id'],
             'status_id' => $data['status_id'],

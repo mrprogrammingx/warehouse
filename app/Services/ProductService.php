@@ -30,7 +30,7 @@ class ProductService
         return ResponsesService::success($this->productRepository->store($data));
     }
 
-    public function dalete(int $id): array
+    public function delete(int $id): array
     {
         return ResponsesService::success($this->productRepository->delete($id));
     }

@@ -21,7 +21,7 @@ class RequestsConfirmRepository
         return RequestsConfirm::create($fields);
     }
 
-    public function dalete($id){
+    public function delete($id){
         return RequestsConfirm::destroy($id);
     }
 
