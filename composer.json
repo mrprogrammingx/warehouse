@@ -10,7 +10,7 @@
         "getsolaris/laravel-make-service": "^1.1",
         "guzzlehttp/guzzle": "^7.9",
         "hekmatinasser/verta": "^8.4",
-        "laravel/framework": "^8.83",
+        "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.10",
         "laravel/ui": "^3.4",
@@ -20,12 +20,12 @@
         "tymon/jwt-auth": "^1.0@dev"
     },
     "require-dev": {
-        "facade/ignition": "^2.17",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.24",
         "jason-guru/laravel-make-repository": "^0.0.3",
         "laravel/sail": "^1.25",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^5.11",
+        "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.6"
     },
     "autoload": {
