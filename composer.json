@@ -15,7 +15,6 @@
         "laravel/tinker": "^2.10",
         "laravel/ui": "^4",
         "doctrine/dbal": "^3.0",
-        "laravelcollective/html": "^6.4",
         "livewire/livewire": "^2.12",
         "spatie/laravel-permission": "^6.15",
         "tymon/jwt-auth": "^2.0@dev"
