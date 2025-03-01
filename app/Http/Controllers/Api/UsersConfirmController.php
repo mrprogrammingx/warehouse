@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserConfirm\GetByUserIdRequest;
-use App\Http\Requests\userConfirm\SetActiveStatusUserConfirmIdRequest;
-use App\Http\Requests\userConfirm\StoreRequest;
-use App\Http\Requests\userConfirm\UpdateRequest;
+use App\Http\Requests\UserConfirm\SetActiveStatusUserConfirmIdRequest;
+use App\Http\Requests\UserConfirm\StoreRequest;
+use App\Http\Requests\UserConfirm\UpdateRequest;
 use App\Services\UsersConfirmService;
 use Illuminate\Http\Request;
 

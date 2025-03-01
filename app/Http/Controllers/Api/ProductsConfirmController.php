@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\productsConfirm\GetByProductIdRequest;
-use App\Http\Requests\productsConfirm\StoreRequest;
+use App\Http\Requests\ProductsConfirm\GetByProductIdRequest;
+use App\Http\Requests\ProductsConfirm\StoreRequest;
 use App\Services\ProductsConfirmService;
 
 class ProductsConfirmController extends Controller

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\requestsConfirm\StoreRequest;
-use App\Http\Requests\requestsConfirm\UpdateRequest;
+use App\Http\Requests\RequestsConfirm\StoreRequest;
+use App\Http\Requests\RequestsConfirm\UpdateRequest;
 use App\Services\RequestsConfirmService;
 
 class RequestsConfirmController extends Controller

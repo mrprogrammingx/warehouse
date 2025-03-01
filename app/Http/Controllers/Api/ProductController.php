@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\product\GetAllRecordsOfProductByIdRequest;
-use App\Http\Requests\product\ProductsByWarehouseIdRequest;
-use App\Http\Requests\product\StoreRequest;
-use App\Http\Requests\product\UpdateRequest;
+use App\Http\Requests\Product\GetAllRecordsOfProductByIdRequest;
+use App\Http\Requests\Product\ProductsByWarehouseIdRequest;
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 

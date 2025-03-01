@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\warehouse\StoreRequest;
-use App\Http\Requests\warehouse\UpdateRequest;
+use App\Http\Requests\Warehouse\StoreRequest;
+use App\Http\Requests\Warehouse\UpdateRequest;
 use App\Services\WarehouseService;
 use Illuminate\Http\Request;
 

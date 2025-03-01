@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\RolePermission;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\rolePermission\AddRoleToUserRequest;
-use App\Http\Requests\rolePermission\AssignPermissionToRoleRequest;
+use App\Http\Requests\RolePermission\AddRoleToUserRequest;
+use App\Http\Requests\RolePermission\AssignPermissionToRoleRequest;
 use App\Services\RolePermission\RoleService;
 
 class RoleController extends Controller

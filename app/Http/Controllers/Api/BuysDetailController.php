@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\buysDetail\StoreRequest;
-use App\Http\Requests\buysDetail\UpdateRequest;
+use App\Http\Requests\BuysDetail\StoreRequest;
+use App\Http\Requests\BuysDetail\UpdateRequest;
 use App\Services\BuysDetailService;
 use Illuminate\Http\Request;
 

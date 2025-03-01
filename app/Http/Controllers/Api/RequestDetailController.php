@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\requestDetail\IsConfirmedRequest;
-use App\Http\Requests\requestDetail\SetDeliveredRequest;
-use App\Http\Requests\requestDetail\SetWarehouseDeliveryIdRequest;
-use App\Http\Requests\requestDetail\StoreRequest;
-use App\Http\Requests\requestDetail\UpdateDeliveryIdRequest;
-use App\Http\Requests\requestDetail\UpdateRequest;
-use App\Http\Requests\requestDetail\UpdateWarehouseDeliveryIdRequest;
+use App\Http\Requests\RequestDetail\IsConfirmedRequest;
+use App\Http\Requests\RequestDetail\SetDeliveredRequest;
+use App\Http\Requests\RequestDetail\SetWarehouseDeliveryIdRequest;
+use App\Http\Requests\RequestDetail\StoreRequest;
+use App\Http\Requests\RequestDetail\UpdateDeliveryIdRequest;
+use App\Http\Requests\RequestDetail\UpdateRequest;
+use App\Http\Requests\RequestDetail\UpdateWarehouseDeliveryIdRequest;
 use App\Services\RequestDetailService;
 use App\Services\RequestsDetailsConfirmService;
 use Illuminate\Http\Request;

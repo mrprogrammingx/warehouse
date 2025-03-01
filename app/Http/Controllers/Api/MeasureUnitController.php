@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\measureUnit\StoreRequest;
-use App\Http\Requests\measureUnit\UpdateRequest;
+use App\Http\Requests\MeasureUnit\StoreRequest;
+use App\Http\Requests\MeasureUnit\UpdateRequest;
 use App\Services\MeasureUnitService;
 
 class MeasureUnitController extends Controller

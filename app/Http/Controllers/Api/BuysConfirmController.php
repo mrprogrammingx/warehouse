@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\BuysConfirmService;
-use App\Http\Requests\buysConfirm\StoreRequest;
-use App\Http\Requests\buysConfirm\UpdateRequest;
+use App\Http\Requests\BuysConfirm\StoreRequest;
+use App\Http\Requests\BuysConfirm\UpdateRequest;
 
 class BuysConfirmController extends Controller
 {

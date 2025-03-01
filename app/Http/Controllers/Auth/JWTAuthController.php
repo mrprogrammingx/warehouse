@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\jwtAuth\GetUserRequest;
-use App\Http\Requests\jwtAuth\LoginByTokenRequest;
-use App\Http\Requests\jwtAuth\LoginRequest;
-use App\Http\Requests\jwtAuth\RegisterRequest;
-use App\Models\Request;
+use App\Http\Requests\JwtAuth\GetUserRequest;
+use App\Http\Requests\JwtAuth\LoginByTokenRequest;
+use App\Http\Requests\JwtAuth\LoginRequest;
+use App\Http\Requests\JwtAuth\RegisterRequest;
 use App\Services\Auth\JwtAuthService;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Symfony\Component\HttpFoundation\Response;
 
 class JwtAuthController extends Controller
 {

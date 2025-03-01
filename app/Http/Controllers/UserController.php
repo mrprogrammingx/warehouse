@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\user\GetByIdRequest;
-use App\Http\Requests\user\StoreRequest;
-use App\Http\Requests\user\UpdateOrStoreByPersonnelCodeRequest;
-use App\Http\Requests\user\UpdateRequest;
+use App\Http\Requests\User\GetByIdRequest;
+use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UpdateOrStoreByPersonnelCodeRequest;
+use App\Http\Requests\User\UpdateRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;

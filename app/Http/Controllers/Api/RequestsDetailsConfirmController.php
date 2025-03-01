@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\requestsDetailsConfirm\GetByRequestIdRequest;
+use App\Http\Requests\RequestsDetailsConfirm\GetByRequestIdRequest;
 use App\Http\Requests\RequestsDetailsConfirm\GetByRequestsDetailIdRequest;
 use App\Http\Requests\RequestsDetailsConfirm\StoreRequest;
 use App\Http\Requests\RequestsDetailsConfirm\UpdateByRequestDetailUserConfirmIdRequest;

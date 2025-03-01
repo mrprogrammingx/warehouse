@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\delivery\StoreRequest;
-use App\Http\Requests\delivery\UpdateOnlineStatusRequest;
-use App\Http\Requests\delivery\UpdateRequest;
+use App\Http\Requests\Delivery\StoreRequest;
+use App\Http\Requests\Delivery\UpdateOnlineStatusRequest;
+use App\Http\Requests\Delivery\UpdateRequest;
 use App\Services\DeliveryService;
 
 class DeliveryController extends Controller

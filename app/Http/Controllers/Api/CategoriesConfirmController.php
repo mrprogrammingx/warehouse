@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\categoriesConfirm\StoreRequest;
-use App\Http\Requests\categoriesConfirm\UpdateRequest;
+use App\Http\Requests\CategoriesConfirm\StoreRequest;
+use App\Http\Requests\CategoriesConfirm\UpdateRequest;
 use App\Services\CategoriesConfirmService;
 use Illuminate\Http\Request;
 

@@ -2,22 +2,10 @@
 
 namespace App\Http\Requests\Rayvarz\Product;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Requests\BaseFormRequest;
 
-class SyncWarehouseWithRayvarzRequest extends FormRequest
+class SyncWarehouseWithRayvarzRequest extends BaseFormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,13 +16,5 @@ class SyncWarehouseWithRayvarzRequest extends FormRequest
         return [
             'itemDataId' => 'required'
         ];
-    }
-
-    public function failedValidation(Validator $validator) { 
-        throw new HttpResponseException(response()->json([ 
-            'success'   => false, 
-            'message'   => $validator->errors(), 
-            'data'      => $validator->errors() 
-        ],400)); 
     }
 }

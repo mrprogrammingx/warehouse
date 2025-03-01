@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\file\DownloadRequest;
-use App\Http\Requests\file\ShowRequest;
-use App\Http\Requests\file\StoreRequest;
-use App\Http\Requests\file\UpdateRequest;
+use App\Http\Requests\File\DownloadRequest;
+use App\Http\Requests\File\ShowRequest;
+use App\Http\Requests\File\StoreRequest;
+use App\Http\Requests\File\UpdateRequest;
 use App\Services\FileService;
 use Illuminate\Http\Request;
 
