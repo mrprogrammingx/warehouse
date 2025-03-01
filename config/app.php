@@ -174,13 +174,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        // Tymon\JWTAuth\Providers\LaravelServiceProvider::class, 
-        //TODO fix it
-        // "tymon/jwt-auth": "*" should be install for jwt now not compatible with laravel 12 //TODO fix it
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        //TODO fix it Hekmatinasser
         // Hekmatinasser\Verta\Laravel\VertaServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
 
-        // Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
     ],
 
     /*

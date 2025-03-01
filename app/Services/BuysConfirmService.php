@@ -17,22 +17,22 @@ class BuysConfirmService
         $this->buysConfirmRepository = $buysConfirmRepository;
     }
 
-    public function getAll()
+    public function getAll(): array
     {
         return ResponsesService::success($this->buysConfirmRepository->getAll());
     }
 
-    public function store(array $data)
+    public function store(array $data): array
     {
         return ResponsesService::success($this->buysConfirmRepository->store($data));
     }
 
-    public function delete(int $id)
+    public function delete(int $id): array
     {
         return ResponsesService::success($this->buysConfirmRepository->delete($id));
     }
 
-    public function update(array $data)
+    public function update(array $data): array
     {
         return ResponsesService::success($this->buysConfirmRepository->update($data));
     }
