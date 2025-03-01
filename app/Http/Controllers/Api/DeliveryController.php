@@ -7,9 +7,6 @@ use App\Http\Requests\delivery\StoreRequest;
 use App\Http\Requests\delivery\UpdateOnlineStatusRequest;
 use App\Http\Requests\delivery\UpdateRequest;
 use App\Services\DeliveryService;
-use App\Services\Globals\ResponsesService;
-use Exception;
-use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
@@ -21,51 +18,36 @@ class DeliveryController extends Controller
 
     public function getAll()
     {
-        try {
-            $result = $this->deliveryService->getAll();
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->deliveryService->getAll();
+
         return response()->json($result, $result['status']);
     }
 
     public function store(StoreRequest $request)
     {
-        try {
-            $result = $this->deliveryService->store($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->deliveryService->store($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
     public function delete($id)
     {
-        try {
-            $result = $this->deliveryService->delete($id);
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->deliveryService->delete($id);
+
         return response()->json($result, $result['status']);
     }
 
     public function update(UpdateRequest $request)
     {
-        try {
-            $result = $this->deliveryService->update($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->deliveryService->update($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
     public function updateOnlineStatus(UpdateOnlineStatusRequest $request)
     {
-        try {
-            $result = $this->deliveryService->updateOnlineStatus($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->deliveryService->updateOnlineStatus($request->validated());
+
         return response()->json($result, $result['status']);
     }
 }

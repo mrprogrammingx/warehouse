@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Services\Globals\ResponsesService;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +39,10 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception): JsonResponse
+    {
+        return response()->json(ResponsesService::exception($exception), 500);
     }
 }

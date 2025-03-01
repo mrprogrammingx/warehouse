@@ -7,9 +7,7 @@ use App\Http\Requests\product\GetAllRecordsOfProductByIdRequest;
 use App\Http\Requests\product\ProductsByWarehouseIdRequest;
 use App\Http\Requests\product\StoreRequest;
 use App\Http\Requests\product\UpdateRequest;
-use App\Services\Globals\ResponsesService;
 use App\Services\ProductService;
-use Exception;
 use Illuminate\Http\Request;
 
 
@@ -23,60 +21,43 @@ class ProductController extends Controller
 
     public function getAll()
     {
-        try {
-            $result = $this->productService->getAll();
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->productService->getAll();
+
         return response()->json($result, $result['status']);
     }
 
     public function store(StoreRequest $request)
     {
-        try {
-            $result = $this->productService->store($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->productService->store($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
     public function delete(Request $request)
     {
-        try {
-            $result = $this->productService->delete($request->id);
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->productService->delete($request->id);
+
         return response()->json($result, $result['status']);
     }
 
     public function update(UpdateRequest $request)
     {
-        try {
-            $result = $this->productService->update($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->productService->update($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
     public function getProductsByWarehouseId(ProductsByWarehouseIdRequest $request): object
     {
-        try {
-            $result = $this->productService->getProductsByWarehouseId($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->productService->getProductsByWarehouseId($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
-    public function getAllRecordsOfProductById(GetAllRecordsOfProductByIdRequest $request){
-        try {
-            $result = $this->productService->getAllRecordsOfProductById($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+    public function getAllRecordsOfProductById(GetAllRecordsOfProductByIdRequest $request)
+    {
+        $result = $this->productService->getAllRecordsOfProductById($request->validated());
+
         return response()->json($result, $result['status']);
     }
 }

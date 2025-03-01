@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Services\Globals\ResponsesService;
 use App\Services\ItemConsumptionTypeService;
-use Exception;
-use Illuminate\Http\Request;
+
 
 class ItemConsumptionTypeController extends Controller
 {
@@ -19,10 +17,8 @@ class ItemConsumptionTypeController extends Controller
 
     public function getAllActive()
     {
-        try {
-            $result = $this->itemConsumptionTypeService->getAllActive();
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->itemConsumptionTypeService->getAllActive();
+
         return response()->json($result, $result['status']);
-    }}
+    }
+}

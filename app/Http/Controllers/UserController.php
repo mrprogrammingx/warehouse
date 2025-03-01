@@ -6,9 +6,7 @@ use App\Http\Requests\user\GetByIdRequest;
 use App\Http\Requests\user\StoreRequest;
 use App\Http\Requests\user\UpdateOrStoreByPersonnelCodeRequest;
 use App\Http\Requests\user\UpdateRequest;
-use App\Services\Globals\ResponsesService;
 use App\Services\UserService;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -21,71 +19,52 @@ class UserController extends Controller
     }
     public function getAll()
     {
-        try {
-            $result = $this->userService->getAll();
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->userService->getAll();
+
         return response()->json($result, $result['status']);
     }
 
     public function store(StoreRequest $request)
     {
-        try {
-            $result = $this->userService->store($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->userService->store($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
     public function delete(Request $request)
     {
-        try {
-            $result = $this->userService->delete($request->id);
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->userService->delete($request->id);
+
         return response()->json($result, $result['status']);
     }
 
     public function update(UpdateRequest $request)
     {
-        try {
-            $result = $this->userService->update($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->userService->update($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
     public function getById(GetByIdRequest $request)
     {
-        try {
-            $result = $this->userService->getById($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->userService->getById($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
     public function updateOrStoreByPersonnelCode(UpdateOrStoreByPersonnelCodeRequest $request)
     {
         Log::info($request->validated());
-        try {
-            $result = $this->userService->updateOrStoreByPersonnelCode($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+
+        $result = $this->userService->updateOrStoreByPersonnelCode($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
-    public function changeUserStatus(Request $request) {
-        try {
-            $result = $this->userService->changeUserStatus($request);
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+    public function changeUserStatus(Request $request)
+    {
+        $result = $this->userService->changeUserStatus($request);
+
         return response()->json($result, $result['status']);
     }
 }

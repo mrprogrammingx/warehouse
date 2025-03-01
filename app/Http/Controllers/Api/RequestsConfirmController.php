@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\requestsConfirm\StoreRequest;
 use App\Http\Requests\requestsConfirm\UpdateRequest;
-use App\Services\Globals\ResponsesService;
 use App\Services\RequestsConfirmService;
-use Exception;
 
 class RequestsConfirmController extends Controller
 {
@@ -20,41 +18,29 @@ class RequestsConfirmController extends Controller
 
     public function getAll()
     {
-        try {
-            $result = $this->requestsConfirmService->getAll();
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->requestsConfirmService->getAll();
+
         return response()->json($result, $result['status']);
     }
 
     public function store(StoreRequest $request)
     {
-        try {
-            $result = $this->requestsConfirmService->store($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->requestsConfirmService->store($request->validated());
+
         return response()->json($result, $result['status']);
     }
 
     public function delete(Request $request)
     {
-        try {
-            $result = $this->requestsConfirmService->delete($request->id);
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->requestsConfirmService->delete($request->id);
+
         return response()->json($result, $result['status']);
     }
 
     public function update(UpdateRequest $request)
     {
-        try {
-            $result = $this->requestsConfirmService->update($request->validated());
-        } catch (Exception $e) {
-            $result = ResponsesService::exception($e);
-        }
+        $result = $this->requestsConfirmService->update($request->validated());
+
         return response()->json($result, $result['status']);
     }
 }
