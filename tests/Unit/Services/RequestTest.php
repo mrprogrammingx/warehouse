@@ -2,61 +2,71 @@
 
 namespace Tests\Unit\Services;
 
-use App\Repositories\FileRepository;
-use App\Repositories\FileRequestDetailRepository;
-use App\Repositories\FilesCategoryRepository;
-use App\Repositories\RequestDetailRepository;
-use App\Repositories\RequestRepository;
-use App\Repositories\UsersConfirmRepository;
-use App\Repositories\UsersUnitRepository;
-use App\Services\FileRequestDetailService;
+use App\Models\RequestDetail;
+use Tests\TestCase;
+use App\Models\Product;
 use App\Services\FileService;
-use App\Services\RequestDetailService;
-use App\Services\RequestsDetailsConfirmService;
+use App\Services\ProductService;
 use App\Services\RequestService;
 use App\Services\UsersUnitService;
+use App\Repositories\FileRepository;
+use App\Services\RequestDetailService;
 use Database\Factories\RequestFactory;
-use Tests\TestCase;
-
-use function PHPUnit\Framework\assertTrue;
 use function PHPUnit\Framework\isTrue;
+use App\Repositories\RequestRepository;
+use App\Repositories\UsersUnitRepository;
+use App\Services\FileRequestDetailService;
+use function PHPUnit\Framework\assertTrue;
+use App\Repositories\UsersConfirmRepository;
+
+use App\Repositories\FilesCategoryRepository;
+use App\Repositories\RequestDetailRepository;
+use App\Services\RequestsDetailsConfirmService;
+use App\Repositories\FileRequestDetailRepository;
 
 class RequestTest extends TestCase
 {
     public RequestService $requestService;
-    public RequestDetailTest $requestDetailTest;
-    public ProductTest $productTest;
+    public requestDetailService $requestDetailService;
+    public ProductService $productSerivce;
     public RequestFactory $requestFactory;
-    public function setUp():void
+    public Product $product;
+    public RequestDetail $requestDetail;
+
+    public function setUp(): void
     {
         parent::setUp();
+
         $this->requestFactory = new RequestFactory();
-        $this->requestService = app()->make('App\Services\RequestService');
-        $this->requestDetailTest = new RequestDetailTest();
-        $this->productTest = new ProductTest();
+        $this->requestService = app(RequestService::class);
+        $this->requestDetailService = app(RequestDetailService::class);
+        $this->productSerivce = app(ProductService::class);
+
+        $this->product = $this->productSerivce->getAll()['data'][0];
+        $this->requestDetail = $this->requestDetailService->getAll()['data'][0];
     }
 
-    public function test_getAll():void
+    public function test_getAll(): void
     {
         $response = $this->requestService->getAll();
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
     }
 
-    public function test_store():?object
+    public function test_store(): ?object
     {
         $response = $this->requestService->store($this->requestFactory->definition());
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
         return $response['data'];
     }
 
-    public function test_delete():void
+    public function test_delete(): void
     {
         $request = $this->test_store();
         $response = $this->requestService->delete($request->id);
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
     }
 
-    public function test_update():void
+    public function test_update(): void
     {
         $request = $this->test_store();
         $response = $this->requestService->update($request->toArray());
@@ -67,16 +77,13 @@ class RequestTest extends TestCase
     {
         $firstIndexOfArray = 0;
         $request = $this->test_store();
-        $this->requestDetailTest->setUp();
-        $requestDetail = $this->requestDetailTest->test_store();
-        $this->productTest->setUp();
-        $product = $this->productTest->test_store();
+
         $data = [
             'request' => $request->toArray(),
-            'requestDetails' => [$requestDetail->toArray()],
+            'requestDetails' => [$this->requestDetail->toArray()],
         ];
         $data['request']['warehouses_id'] = 1;
-        $data['requestDetails'][$firstIndexOfArray]['product_id'] = $product->id;
+        $data['requestDetails'][$firstIndexOfArray]['product_id'] = $this->product->id;
         $response = $this->requestService->storeRequestAndRequestDetails($data);
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
     }
@@ -155,7 +162,7 @@ class RequestTest extends TestCase
         $this->assertArrayHasKey('user', $data);
         $this->assertArrayHasKey('status', $data);
         $this->assertArrayHasKey('request_detail', $data);
-    } 
+    }
 
     public function test_buildRequestNumber()
     {
@@ -198,25 +205,25 @@ class RequestTest extends TestCase
 
     public function test_getAllArchiveStatus()
     {
-        $response = $this->requestService->getAllArchiveStatus(); 
+        $response = $this->requestService->getAllArchiveStatus();
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
     }
 
     public function test_getAllCancelStatus()
     {
-        $response = $this->requestService->getAllCancelStatus(); 
+        $response = $this->requestService->getAllCancelStatus();
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
     }
 
     public function test_getAllIsNotArchiveStatus()
     {
-        $response = $this->requestService->getAllIsNotArchiveStatus(); 
+        $response = $this->requestService->getAllIsNotArchiveStatus();
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
     }
 
     public function test_getAllIsNotArchiveAndCancelStatus()
     {
-        $response = $this->requestService->getAllIsNotArchiveAndCancelStatus(); 
+        $response = $this->requestService->getAllIsNotArchiveAndCancelStatus();
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
     }
 
@@ -250,7 +257,7 @@ class RequestTest extends TestCase
         $defaultStatusId = 1;
         $response = $this->requestService->setStatusForRequestAndItsRequestDetails($data, $defaultStatusId);
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
-        $this->assertIsArray($response['data']); 
+        $this->assertIsArray($response['data']);
     }
 
     public function test_changeStatusConditions()
@@ -260,8 +267,8 @@ class RequestTest extends TestCase
         $statusId = 2;
         $currentStatusId = $request->status_id;
         $response = $this->requestService->changeStatusConditions($requestId, $statusId, $currentStatusId);
-        $this->assertArrayHasKey('success',$response);
-        $this->assertArrayHasKey('message',$response);
+        $this->assertArrayHasKey('success', $response);
+        $this->assertArrayHasKey('message', $response);
     }
 
     public function test_checkStatusIsValidForChangeToCancel()
@@ -281,7 +288,7 @@ class RequestTest extends TestCase
     public function test_separateConfirmed()
     {
         $request = $this->test_store();
-        $response = $this->requestService->separateConfirmed([$request,$request]);
+        $response = $this->requestService->separateConfirmed([$request, $request]);
         $this->assertIsArray($response);
     }
 
@@ -299,9 +306,7 @@ class RequestTest extends TestCase
 
     public function test_checkRequestsDetailsNotBeRepetitiousData()
     {
-        $this->requestDetailTest->setUp();
-        $requestDetail = $this->requestDetailTest->test_store();
-        $response = $this->requestService->checkRequestsDetailsNotBeRepetitiousData([$requestDetail]);
+        $response = $this->requestService->checkRequestsDetailsNotBeRepetitiousData([$this->requestDetail]);
         $this->assertIsBool($response);
     }
 
@@ -351,12 +356,13 @@ class RequestTest extends TestCase
     public function test_processOfSetReturnToWarehouseStatus()
     {
         $request = $this->test_store();
+        
         $data = [
             'requestId' => $request->id,
             'validatedCode' => $request->validated_code,
         ];
-        $this->requestDetailTest->setUp();
-        $data['requestDetail'] = [$this->requestDetailTest->test_store()];
+
+        $data['requestDetail'] = [$this->requestDetail];
         $response = $this->requestService->processOfSetReturnToWarehouseStatus($data);
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
     }
@@ -368,13 +374,13 @@ class RequestTest extends TestCase
             'requestId' => $request->id,
             'validatedCode' => $request->validated_code,
         ];
-        $this->requestDetailTest->setUp();
-        $data['requestDetail'] = [$this->requestDetailTest->test_store()];
+
+        $data['requestDetail'] = [$this->requestDetail];
         $this->requestService->changeStatusToReturnToWarehouseStatus($data);
         $this->assertTrue(true);
     }
 
-    public function test_processOfSetReturnDeliveryId() 
+    public function test_processOfSetReturnDeliveryId()
     {
         $request = $this->test_store();
         $data = [
@@ -382,8 +388,8 @@ class RequestTest extends TestCase
             'validatedCode' => $request->validated_code,
             'returnDeliveryId' => 1,
         ];
-        $this->requestDetailTest->setUp();
-        $data['requestDetail'] = [$this->requestDetailTest->test_store()];
+
+        $data['requestDetail'] = [$this->requestDetail];
         $response = $this->requestService->processOfSetReturnDeliveryId($data);
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
         $this->assertIsArray($response['data']);
@@ -401,15 +407,15 @@ class RequestTest extends TestCase
         $this->assertTrue($response['data'] == $data);
     }
 
-    public function test_processOfValidCodeForReturnToWarehouse() 
+    public function test_processOfValidCodeForReturnToWarehouse()
     {
-        $this->requestDetailTest->setUp();
         $request = $this->test_store();
         $data = [
             'requestId' => $request->id,
             'validatedCode' => $request->validated_code,
         ];
-        $data['requestDetail'] = [$this->requestDetailTest->test_store()];
+
+        $data['requestDetail'] = [$this->requestDetail];
         $response = $this->requestService->processOfValidCodeForReturnToWarehouse($data);
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
         $this->assertIsArray($response['data']);
@@ -417,13 +423,13 @@ class RequestTest extends TestCase
 
     public function test_storeRequestAndRequestDetailsWithoutConfirms()
     {
-        $this->requestDetailTest->setUp();
         $request = $this->test_store();
         $data['request'] = $request->toArray();
-        $requestDetail = $this->requestDetailTest->test_store();
-        $data['requestDetails'] = [$requestDetail];
-        $data['request']['warehouses_id'] = $requestDetail['warehouses_id'];
+
+        $data['requestDetails'] = [$this->requestDetail];
+        $data['request']['warehouses_id'] = $this->requestDetail['warehouses_id'];
         $response = $this->requestService->storeRequestAndRequestDetailsWithoutConfirms($data);
+
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
         $this->assertIsArray($response['data']);
     }

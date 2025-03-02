@@ -32,17 +32,7 @@ class ExampleTest extends TestCase
         $currentMonth = ($timeService)->currentMonth();
         $currentDay = ($timeService)->currentDay();
         $currentDate = ($timeService)->currentManualDate();
-        //var_dump([$currentYear,$currentMonth,$currentDay,$currentDate]);die;
-        //'LKHYgbn776tgubkjhk'
-        //var_dump(RequestService::buildRequestNumber());die;
         $this->assertTrue(true);
     }
-
-    // public function testDeleteFile(){
-    //     $request = new Request();
-    //     $request->id = 1;
-    //     var_dump((new FileController(new FileService(new FileRepository(),new FilesCategoryRepository())))->delete($request));die;
-    //     // requestdetails/delete/{id}
-    // }
 
 }

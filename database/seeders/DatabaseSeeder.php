@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             RolesPermissionsSeeder::class,
             CategorySeeder::class,
             SettingSeeder::class,
-            //ProductSeeder::class,
+            // ProductSeeder::class,
             CenterSeeder::class,
             ProductPersianFieldsSeeder::class,
             ItemConsumptionTypesSeeder::class,

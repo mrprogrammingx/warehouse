@@ -3,22 +3,25 @@
 namespace Tests\Unit\Services\RolePermission;
 
 use App\Interfaces\RolePermissionInterface;
+use App\Services\RolePermission\PermissionService;
 use App\Services\RolePermission\RoleService;
 use Tests\TestCase;
 
 class RoleTest extends TestCase
 {
+
     public RoleService $roleService;
-    public $permissionTest;
+    public $permissionService;
     public $allPermissions;
+
     public function setUp(): void
     {
         parent::setUp();
-        $this->permissionTest = new PermissionTest();
-        $this->roleService = new RoleService();
-        $this->permissionTest->setUp();
-        $this->allPermissions = $this->permissionTest->test_getAllPermissions();
+        $this->permissionService = app(PermissionService::class);
+        $this->roleService = app(RoleService::class);
+        $this->allPermissions = $this->permissionService->getAllPermissions()['data'];
     }
+    
     public function test_getAllRoles()
     {
         $response = $this->roleService->getAllRoles();
@@ -63,7 +66,13 @@ class RoleTest extends TestCase
                 'permissionName' => $this->allPermissions[0],
                 'roleName' => RolePermissionInterface::DEFAULT_ROLE,
             ];
-            $this->roleService->buildArrayForAssignPermissionToRole($data['permissionName'],$data['roleName']);
+            $permissionRole = $this->roleService->buildArrayForAssignPermissionToRole($data['permissionName'],$data['roleName']);
+
+            $this->assertEquals([
+                'permissionName' => $this->allPermissions[0]->name,
+                'roleName' => $data['roleName'],
+            ],$permissionRole);
+            
         } else {
             $this->assertTrue(true);
         }

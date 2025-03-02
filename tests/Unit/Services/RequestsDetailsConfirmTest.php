@@ -2,25 +2,39 @@
 
 namespace Tests\Unit\Services;
 
+use App\Models\RequestDetail;
+use Tests\TestCase;
+use App\Models\Product;
+use App\Models\Request;
+use App\Services\ProductService;
+use App\Services\RequestService;
+use App\Services\RequestDetailService;
 use App\Services\RequestsDetailsConfirmService;
 use Database\Factories\RequestsDetailsConfirmFactory;
-use Tests\TestCase;
 
 class RequestsDetailsConfirmTest extends TestCase
 {
     public RequestsDetailsConfirmService $requestsDetailsConfirmService;
-    public RequestDetailTest $requestDetailTest;
-    public RequestTest $requestTest;
-    public ProductTest $productTest;
+    public RequestDetailService $requestDetailService;
+    public RequestService $requestService;
+    public ProductService $productService;
     public RequestsDetailsConfirmFactory $requestsDetailsConfirmFactory;
+    public Request $request;
+    public Product $product;
+    public RequestDetail $requestDetail;
+
     public function setUp():void
     {
         parent::setUp();
-        $this->requestsDetailsConfirmFactory = new RequestsDetailsConfirmFactory();
-        $this->requestsDetailsConfirmService = new RequestsDetailsConfirmService();
-        $this->requestDetailTest = new RequestDetailTest();
-        $this->requestTest = new RequestTest();
-        $this->productTest = new ProductTest();
+        $this->requestsDetailsConfirmFactory = app(RequestsDetailsConfirmFactory::class);
+        $this->requestsDetailsConfirmService = app(RequestsDetailsConfirmService::class);
+        $this->requestDetailService = app(RequestDetailService::class);
+        $this->requestService = app(RequestService::class);
+        $this->productService = app(ProductService::class);
+
+        $this->request = $this->requestService->getAll()['data'][0];
+        $this->product = $this->productService->getAll()['data'][0];
+        $this->requestDetail = $this->requestDetailService->getAll()['data'][0];
     }
 
     public function test_getAll():void
@@ -31,16 +45,12 @@ class RequestsDetailsConfirmTest extends TestCase
 
     public function test_store():array
     {
-        $this->requestTest->setUp();
-        $this->requestDetailTest->setUp();
         $data = $this->requestsDetailsConfirmFactory->definition();
-        $request = $this->requestTest->test_store();
-        $requestDetail = $this->requestDetailTest->test_store();
 
-        $data['requests_detail_id'] = $requestDetail->id;
+        $data['requests_detail_id'] = $this->requestDetail->id;
         $response = $this->requestsDetailsConfirmService->store([$data]);
         $this->assertTrue($response['status'] >= 200 && $response['status'] < 300);
-        // var_dump($response);die;
+
         return $response['data'];
     }
 
@@ -116,9 +126,8 @@ class RequestsDetailsConfirmTest extends TestCase
     public function test_storeDefinesConfirmsForRequestDetail():void 
     {
         $requestsDetailsConfirm = $this->test_store();
-        $this->productTest->setUp();
-        $productTest = $this->productTest->test_store();
-        $response = $this->requestsDetailsConfirmService->storeDefinesConfirmsForRequestDetail($productTest->id,$requestsDetailsConfirm[0]->toArray()['requests_detail_id']);
+
+        $response = $this->requestsDetailsConfirmService->storeDefinesConfirmsForRequestDetail($this->product->id,$requestsDetailsConfirm[0]->toArray()['requests_detail_id']);
         $this->assertIsArray($response);
     }
 
@@ -156,9 +165,8 @@ class RequestsDetailsConfirmTest extends TestCase
     public function test_checkStatusBeInThem():void
     {
         $statusIds = [1,2,3];
-        $this->requestTest->setUp();
-        $requestTest = $this->requestTest->test_store();
-        $response = $this->requestsDetailsConfirmService->checkStatusBeInThem($requestTest->id,$statusIds);
+
+        $response = $this->requestsDetailsConfirmService->checkStatusBeInThem($this->request->id,$statusIds);
         $this->assertIsBool($response);
     }
 
