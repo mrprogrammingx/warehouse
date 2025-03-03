@@ -557,13 +557,10 @@
                                 <tr>
 
                                     <td colspan="2">
-                                        <div><i class="fas fa-minus minus" @click="deleteRow(index)"></i></div>
+                                        <i class="fas fa-minus minus" @click="deleteRow(index)"></i>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <div class="endrow">
-
-                                    </div>
+                                <tr class="endrow">
                                 </tr>
 
                             </div>

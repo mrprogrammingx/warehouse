@@ -3,7 +3,7 @@ import storeLogin from "./components/storeLogin";
 window.Vue = require('vue').default;
 import VueRouter from 'vue-router';
 import AppComponent from './components/AppComponent';
-import VueTree from '@ssthouse/vue-tree-chart';
+// import VueTree from '@ssthouse/vue-tree-chart';
 import Business from "./components/Business";
 import Request from "./components/Request";
 import Status from "./components/Status";
@@ -41,7 +41,7 @@ window.axios = axios;
  */
 
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-Vue.component('vue-tree', VueTree);
+// Vue.component('vue-tree', VueTree);
 Vue.component('apexchart', VueApexCharts);
 // const files = require.context('./', true, /\.vue$/i)
 Vue.component('appcomponent', require('./components/AppComponent.vue').default);

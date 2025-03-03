@@ -194,10 +194,10 @@
                                         <td label="Row">
                                             {{ index + 1 }}
                                         </td>
-                                        <td label="Name of the approver v-if="confirm.user!=null">
+                                        <td label="Name of the approver" v-if="confirm.user !=null">
                                             {{ confirm.user.first_name }} {{ confirm.user.last_name }}
                                         </td>
-                                        <td label="Name of the approver v-if="confirm.user==null">
+                                        <td label="Name of the approver" v-if="confirm.user == null">
                                             Unknown
                                         </td>
                                         <td label="Confirmation name" v-if="confirm.confirm.name!=null">
