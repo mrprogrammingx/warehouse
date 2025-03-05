@@ -279,25 +279,28 @@ export default {
         }
     },
     methods: {
-        getStatisticsDelivery() {
-            axios.get('/api/food/delivery/statistics/count').then(({data}) => (this.delivery_array = data.data.count))
+        async getStatisticsDelivery() {
+            return await axios.get('/api/food/delivery/statistics/count').then(({data}) => (this.delivery_array = data.data.count))
         },
-        getStatisticsReserve() {
-            axios.get('/api/food/reservation/statistics/count').then(({data}) => (this.reserve_array = data.data.count, this.pushArrayToSeries()))
+        async getStatisticsReserve() {
+            return await axios.get('/api/food/reservation/statistics/count').then(({data}) => (this.reserve_array = data.data.count, this.pushArrayToSeries()))
         },
         pushArrayToSeries() {
+            console.log(this.delivery_array.length) //this.delivery_array[i].count
+
             for (let i = 0; i < this.delivery_array.length; i++) {
-                this.bardata[0].data.push(this.delivery_array[i].count)
+                this.bardata[0].data.push(this.delivery_array[i].count)//
                 this.bardata[1].data.push(this.reserve_array[i].count)
                 this.barOptions.xaxis.categories.push(moment(this.delivery_array[i].date).format("jYYYY-jMM-jDD"))
-
             }
+            console.log('delivery_array',this.bardata,this.barOptions.xaxis.categories)
+
         }
 
     },
-    created() {
-        this.getStatisticsDelivery()
-        this.getStatisticsReserve()
+    async created() {
+        await this.getStatisticsDelivery()
+        await this.getStatisticsReserve()
     }
 
 }
