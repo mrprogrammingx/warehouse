@@ -35,7 +35,7 @@
     <div class="main-panel h-100">
         <div class="content h-100">
             <menubar></menubar>
-            <AppComponent></AppComponent>
+            <App></App>
 
         </div>
     </div>

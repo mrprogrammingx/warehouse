@@ -6,7 +6,7 @@
 <script>
 import store from "./storeLogin";
 export default {
-    name: "AppComponent",
+    name: "App",
 
     // methods: {
     //     logoutUser() {
