@@ -25,14 +25,13 @@
         "vue-template-compiler": "^0.1.0"
     },
     "dependencies": {
-        "apexcharts": "^4.5.0",
         "moment-jalaali": "^0.9.6",
-        "sweetalert2": "^11.6.13",
+        "sweetalert2": "^11.17.2",
         "vue-html-to-paper": "^1.4.3",
         "vue-multiselect": "^2.1.6",
         "vue-persian-datetime-picker": "^2.10.4",
         "vue-print-nb": "^1.0.3",
-        "vue-router": "^3.5.2",
+        "vue-router": "^4.5.0",
         "vue3-apexcharts": "^1.8.0",
         "vuex": "^4.0.2"
     }
