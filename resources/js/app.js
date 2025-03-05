@@ -1,8 +1,11 @@
 import storeLogin from "./components/storeLogin";
 
-window.Vue = require('vue').default;
-import VueRouter from 'vue-router';
-import AppComponent from './components/AppComponent';
+// window.Vue = require('vue').default;
+import { createApp } from 'vue';
+// import App from './App.vue';
+
+import { createMemoryHistory, createRouter } from 'vue-router';
+import App from './components/App.vue';
 // import VueTree from '@ssthouse/vue-tree-chart';
 import Business from "./components/Business";
 import Request from "./components/Request";
@@ -22,16 +25,19 @@ import DeliveryKartable from "./components/DeliveryKartable";
 import MenuBar from "./components/MenuBar";
 import StoreArchive from "./components/StoreArchive";
 import Chart from "./components/Chart";
-import VueApexCharts from 'vue-apexcharts';
+import VueApexCharts from 'vue3-apexcharts';
 import CancelRequests from "./components/CancelRequests";
 import EditRequest from "./components/EditRequest";
-Vue.use(VueApexCharts)
-Vue.use(VueRouter);
-Vue.use(Print);
+
+const app = createApp(App);
+
+// app.use(VueApexCharts);
+// app.use(VueRouter);
+app.use(Print);
 const axios = require('axios').default;
 window.axios = axios;
 
-
+//        "apexcharts": "^4.5.0",
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -41,12 +47,12 @@ window.axios = axios;
  */
 
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-// Vue.component('vue-tree', VueTree);
-Vue.component('apexchart', VueApexCharts);
+// app.component('vue-tree', VueTree);
+app.component('apexchart', VueApexCharts);
 // const files = require.context('./', true, /\.vue$/i)
-Vue.component('appcomponent', require('./components/AppComponent.vue').default);
-Vue.component('sidebar', require('./components/Sidebar.vue').default);
-Vue.component('menubar', require('./components/MenuBar.vue').default);
+app.component('appcomponent', require('./components/App.vue').default);
+app.component('sidebar', require('./components/Sidebar.vue').default);
+app.component('menubar', require('./components/MenuBar.vue').default);
 
 const routes = [
     {path: '/', component:Mylogin, name: 'mylogin'},
@@ -70,12 +76,15 @@ const routes = [
     {path: '/cancel_requests', component:CancelRequests, name: 'cancel',meta: { requiresAuth: true }},
 ]
 window.axios.defaults.headers.common['Authorization'] = 'Bearer ' +  localStorage.getItem('access_token');
-const router = new VueRouter({
+// const router = new VueRouter({
+//     routes,
+//     linkActiveClass: 'myActiveLink'
+
+// })
+const router = createRouter({
+    history: createMemoryHistory(),
     routes,
-    linkActiveClass: 'myActiveLink'
-
 })
-
 
 window.axios.interceptors.response.use(function (response) {
 
@@ -135,11 +144,8 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
-const app = new Vue({
-
-    components: { AppComponent },
-    router
-}).$mount('#app')
 
 
-
+app.component(App)
+app.use(router)
+app.mount('#app')
