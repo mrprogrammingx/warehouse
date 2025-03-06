@@ -17,7 +17,7 @@ class FoodController extends Controller
                 ['count' => 3, 'date' => now()]
             ]
         ]);
-        
+
         return response()->json($result, $result['status']);
     }
 
@@ -30,8 +30,8 @@ class FoodController extends Controller
                 ['count' => 3, 'date' => now()],
                 ['count' => 4, 'date' => now()]
             ]
-        ]);        
-        
+        ]);
+
         return response()->json($result, $result['status']);
     }
 }
